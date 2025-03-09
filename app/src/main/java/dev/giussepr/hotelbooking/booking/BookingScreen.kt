@@ -33,6 +33,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -64,6 +65,14 @@ fun BookingScreen(modifier: Modifier = Modifier, hotel: Hotel) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 32.dp)
+            )
+        }
+        item {
+            Text(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                text = hotel.description,
+                style = MaterialTheme.typography.bodySmall,
+                textAlign = TextAlign.Justify
             )
         }
     }
@@ -181,7 +190,10 @@ fun BookingDivider(modifier: Modifier = Modifier) {
 fun TagsSection(modifier: Modifier = Modifier, tags: List<Tag>) {
     FlowRow(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(space = 8.dp, alignment = Alignment.CenterHorizontally),
+        horizontalArrangement = Arrangement.spacedBy(
+            space = 8.dp,
+            alignment = Alignment.CenterHorizontally
+        ),
     ) {
         tags.forEach { tag ->
             AssistChip(
