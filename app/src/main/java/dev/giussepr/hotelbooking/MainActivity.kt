@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import dev.giussepr.hotelbooking.booking.BookingScreen
 import dev.giussepr.hotelbooking.ui.theme.HotelBookingTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,28 +21,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             HotelBookingTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                    BookingScreen(
+                        modifier = Modifier
+                            .padding(innerPadding)
                     )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    HotelBookingTheme {
-        Greeting("Android")
     }
 }
