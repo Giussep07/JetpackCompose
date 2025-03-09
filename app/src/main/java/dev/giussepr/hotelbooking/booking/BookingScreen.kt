@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,10 +17,13 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.AssistChip
+import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -47,7 +51,8 @@ fun BookingScreen(modifier: Modifier = Modifier, hotel: Hotel) {
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(Color.White),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item { BannerSection(hotel = hotel) }
         item {
@@ -74,6 +79,22 @@ fun BookingScreen(modifier: Modifier = Modifier, hotel: Hotel) {
                 style = MaterialTheme.typography.bodySmall,
                 textAlign = TextAlign.Justify
             )
+        }
+        item {
+            WhatOfferSection(
+                modifier = Modifier
+                    .padding(top = 32.dp),
+                offers = hotel.offer
+            )
+        }
+        item {
+            Button(modifier = Modifier
+                .padding(top = 32.dp), onClick = {}) {
+                Text(
+                    "Book Now",
+                    style = MaterialTheme.typography.titleMedium
+                )
+            }
         }
     }
 }
@@ -204,6 +225,47 @@ fun TagsSection(modifier: Modifier = Modifier, tags: List<Tag>) {
                     )
                 }
             )
+        }
+    }
+}
+
+@Composable
+fun WhatOfferSection(modifier: Modifier = Modifier, offers: List<Offer>) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(32.dp)
+    ) {
+        Text(
+            text = "What we offer",
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Bold
+        )
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            contentPadding = PaddingValues(horizontal = 16.dp)
+        ) {
+            items(offers) { offer ->
+                Column(
+                    modifier = Modifier
+                        .background(Color(0xFFD9D9D9))
+                        .padding(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Icon(
+                        modifier = Modifier
+                            .size(32.dp),
+                        painter = painterResource(offer.resId),
+                        contentDescription = null
+                    )
+                    Text(
+                        text = offer.name,
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
+            }
         }
     }
 }
