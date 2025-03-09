@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalLayoutApi::class)
+
 package dev.giussepr.hotelbooking.booking
 
 import androidx.compose.foundation.Image
@@ -5,6 +7,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,6 +19,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.AssistChip
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -38,11 +44,28 @@ import dev.giussepr.hotelbooking.booking.model.Tag
 @Composable
 fun BookingScreen(modifier: Modifier = Modifier, hotel: Hotel) {
     LazyColumn(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(Color.White)
     ) {
         item { BannerSection(hotel = hotel) }
+        item {
+            BookingDivider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 32.dp)
+            )
+        }
+        item {
+            TagsSection(modifier = Modifier.fillMaxWidth(), tags = hotel.tags)
+        }
+        item {
+            BookingDivider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 32.dp)
+            )
+        }
     }
 }
 
@@ -144,6 +167,32 @@ private fun LabeledIcon(icon: @Composable () -> Unit, label: String) {
             text = label,
             style = MaterialTheme.typography.bodyMedium
         )
+    }
+}
+
+@Composable
+fun BookingDivider(modifier: Modifier = Modifier) {
+    HorizontalDivider(
+        modifier = modifier
+    )
+}
+
+@Composable
+fun TagsSection(modifier: Modifier = Modifier, tags: List<Tag>) {
+    FlowRow(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(space = 8.dp, alignment = Alignment.CenterHorizontally),
+    ) {
+        tags.forEach { tag ->
+            AssistChip(
+                onClick = {},
+                label = {
+                    Text(
+                        text = tag.name
+                    )
+                }
+            )
+        }
     }
 }
 
