@@ -1,4 +1,4 @@
-package dev.giussepr.hotelbooking
+package dev.giussepr.jetpackcompose
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,11 +8,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import dev.giussepr.hotelbooking.booking.BookingScreen
-import dev.giussepr.hotelbooking.booking.model.Hotel
-import dev.giussepr.hotelbooking.booking.model.Offer
-import dev.giussepr.hotelbooking.booking.model.Tag
-import dev.giussepr.hotelbooking.ui.theme.HotelBookingTheme
+import dev.giussepr.jetpackcompose.booking.BookingScreen
+import dev.giussepr.jetpackcompose.booking.model.Hotel
+import dev.giussepr.jetpackcompose.booking.model.Offer
+import dev.giussepr.jetpackcompose.booking.model.Tag
+import dev.giussepr.jetpackcompose.ui.theme.HotelBookingTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

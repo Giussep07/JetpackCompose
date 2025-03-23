@@ -1,6 +1,5 @@
-package dev.giussepr.hotelbooking.ui.theme
+package dev.giussepr.jetpackcompose.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

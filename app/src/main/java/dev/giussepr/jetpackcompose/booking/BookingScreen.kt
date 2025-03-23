@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalLayoutApi::class)
 
-package dev.giussepr.hotelbooking.booking
+package dev.giussepr.jetpackcompose.booking
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -41,10 +41,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.giussepr.hotelbooking.R
-import dev.giussepr.hotelbooking.booking.model.Hotel
-import dev.giussepr.hotelbooking.booking.model.Offer
-import dev.giussepr.hotelbooking.booking.model.Tag
+import dev.giussepr.jetpackcompose.R
+import dev.giussepr.jetpackcompose.booking.model.Hotel
+import dev.giussepr.jetpackcompose.booking.model.Offer
+import dev.giussepr.jetpackcompose.booking.model.Tag
 
 @Composable
 fun BookingScreen(modifier: Modifier = Modifier, hotel: Hotel) {

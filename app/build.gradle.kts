@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "dev.giussepr.hotelbooking"
+    namespace = "dev.giussepr.jetpackcompose"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "dev.giussepr.hotelbooking"
+        applicationId = "dev.giussepr.jetpackcompose"
         minSdk = 26
         targetSdk = 35
         versionCode = 1

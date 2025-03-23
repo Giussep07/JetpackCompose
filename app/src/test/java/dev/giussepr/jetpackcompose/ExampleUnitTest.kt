@@ -1,4 +1,4 @@
-package dev.giussepr.hotelbooking
+package dev.giussepr.jetpackcompose
 
 import org.junit.Test
 

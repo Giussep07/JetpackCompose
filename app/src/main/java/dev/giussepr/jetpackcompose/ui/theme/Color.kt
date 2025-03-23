@@ -1,4 +1,4 @@
-package dev.giussepr.hotelbooking.ui.theme
+package dev.giussepr.jetpackcompose.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

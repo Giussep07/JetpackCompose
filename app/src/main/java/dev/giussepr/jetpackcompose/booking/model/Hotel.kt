@@ -1,4 +1,4 @@
-package dev.giussepr.hotelbooking.booking.model
+package dev.giussepr.jetpackcompose.booking.model
 
 data class Hotel(
     val name: String,

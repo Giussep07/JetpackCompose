@@ -1,4 +1,4 @@
-package dev.giussepr.hotelbooking.components
+package dev.giussepr.jetpackcompose.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
