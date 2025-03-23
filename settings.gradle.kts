@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "HotelBooking"
+rootProject.name = "JetpackCompose"
 include(":app")

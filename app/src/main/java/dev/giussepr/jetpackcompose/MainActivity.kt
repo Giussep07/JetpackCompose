@@ -12,7 +12,7 @@ import dev.giussepr.jetpackcompose.booking.BookingScreen
 import dev.giussepr.jetpackcompose.booking.model.Hotel
 import dev.giussepr.jetpackcompose.booking.model.Offer
 import dev.giussepr.jetpackcompose.booking.model.Tag
-import dev.giussepr.jetpackcompose.ui.theme.HotelBookingTheme
+import dev.giussepr.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,7 +71,7 @@ class MainActivity : ComponentActivity() {
                 )
             )
 
-            HotelBookingTheme {
+            JetpackComposeTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     BookingScreen(
                         modifier = Modifier
