@@ -34,6 +34,7 @@ import dev.giussepr.jetpackcompose.booking.BookingScreen
 import dev.giussepr.jetpackcompose.booking.model.Hotel
 import dev.giussepr.jetpackcompose.booking.model.Offer
 import dev.giussepr.jetpackcompose.booking.model.Tag
+import dev.giussepr.jetpackcompose.statemanagement.todolist.TodoListScreen
 import dev.giussepr.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -76,6 +77,8 @@ class MainActivity : ComponentActivity() {
                     onScreenSelected = { currentScreen = it })
 
                 0 -> BasicLayouts(modifier = Modifier.fillMaxSize())
+
+                1 -> StateManagement(modifier = Modifier.padding(innerPadding))
             }
         }
     }
@@ -97,6 +100,9 @@ class MainActivity : ComponentActivity() {
             )
             Button(onClick = { onScreenSelected(0) }) {
                 Text("Basic Layouts")
+            }
+            Button(onClick = { onScreenSelected(1) }) {
+                Text("State Management")
             }
         }
     }
@@ -159,6 +165,11 @@ class MainActivity : ComponentActivity() {
             modifier = modifier,
             hotel = hotel
         )
+    }
+
+    @Composable
+    fun StateManagement(modifier: Modifier = Modifier) {
+        TodoListScreen(modifier = modifier)
     }
 
     @Preview
