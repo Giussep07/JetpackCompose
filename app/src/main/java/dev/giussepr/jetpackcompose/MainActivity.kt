@@ -1,13 +1,35 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package dev.giussepr.jetpackcompose
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import dev.giussepr.jetpackcompose.booking.BookingScreen
 import dev.giussepr.jetpackcompose.booking.model.Hotel
 import dev.giussepr.jetpackcompose.booking.model.Offer
@@ -19,67 +41,131 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val hotel = Hotel(
-                name = "Hotel California Strawberry",
-                location = "Los Angeles, California",
-                rate = 4.9,
-                reviews = "14K",
-                pricePerNight = 420.0,
-                tags = listOf(
-                    Tag("City-Center"),
-                    Tag("Luxury"),
-                    Tag("Instant Booking"),
-                    Tag("Exclusive Deal"),
-                    Tag("Early Bird Discount"),
-                    Tag("Romantic Getaway"),
-                    Tag("24/7 Support")
+            JetpackComposeTheme {
+                MainActivityContent()
+            }
+        }
+    }
+
+    @Composable
+    fun MainActivityContent() {
+        var currentScreen by remember { mutableIntStateOf(-1) }
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = { Text("Jetpack Compose") },
+                    navigationIcon = {
+                        if (currentScreen != -1) {
+                            IconButton(onClick = {
+                                currentScreen = -1
+                            }) {
+                                Icon(
+                                    imageVector = Icons.AutoMirrored.Default.ArrowBack,
+                                    contentDescription = "Back"
+                                )
+                            }
+                        }
+                    },
+                )
+            },
+            modifier = Modifier.fillMaxSize()
+        ) { innerPadding ->
+            when (currentScreen) {
+                -1 -> MainMenu(
+                    Modifier.padding(innerPadding),
+                    onScreenSelected = { currentScreen = it })
+
+                0 -> BasicLayouts(modifier = Modifier.fillMaxSize())
+            }
+        }
+    }
+
+    @Composable
+    fun MainMenu(modifier: Modifier = Modifier, onScreenSelected: (Int) -> Unit) {
+        Column(
+            modifier = modifier
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp),
+                text = "Jetpack Compose Learning App",
+                style = MaterialTheme.typography.headlineMedium,
+                textAlign = TextAlign.Center
+            )
+            Button(onClick = { onScreenSelected(0) }) {
+                Text("Basic Layouts")
+            }
+        }
+    }
+
+    @Composable
+    private fun BasicLayouts(modifier: Modifier) {
+        val hotel = Hotel(
+            name = "Hotel California Strawberry",
+            location = "Los Angeles, California",
+            rate = 4.9,
+            reviews = "14K",
+            pricePerNight = 420.0,
+            tags = listOf(
+                Tag("City-Center"),
+                Tag("Luxury"),
+                Tag("Instant Booking"),
+                Tag("Exclusive Deal"),
+                Tag("Early Bird Discount"),
+                Tag("Romantic Getaway"),
+                Tag("24/7 Support")
+            ),
+            description = "The advertisement features a vibrant and inviting design, showcasing the Hotel California Strawberry nestled in the heart of Los Angeles. Surrounded by the iconic Hollywood Sign, Griffith Park, and stunning beaches, the hotel is perfectly located for guests to explore L.A.’s best attractions.",
+            offer = listOf(
+                Offer(
+                    resId = R.drawable.bed,
+                    name = "2 Bed"
                 ),
-                description = "The advertisement features a vibrant and inviting design, showcasing the Hotel California Strawberry nestled in the heart of Los Angeles. Surrounded by the iconic Hollywood Sign, Griffith Park, and stunning beaches, the hotel is perfectly located for guests to explore L.A.’s best attractions.",
-                offer = listOf(
-                    Offer(
-                        resId = R.drawable.bed,
-                        name = "2 Bed"
-                    ),
-                    Offer(
-                        resId = R.drawable.breakfast,
-                        name = "Breakfast"
-                    ),
-                    Offer(
-                        resId = R.drawable.cutlery,
-                        name = "Kitchen"
-                    ),
-                    Offer(
-                        resId = R.drawable.breakfast,
-                        name = "Pet Friendly"
-                    ),
-                    Offer(
-                        resId = R.drawable.serving_dish,
-                        name = "Dinner"
-                    ),
-                    Offer(
-                        resId = R.drawable.snowflake,
-                        name = "Air Conditioning"
-                    ),
-                    Offer(
-                        resId = R.drawable.television,
-                        name = "TV"
-                    ),
-                    Offer(
-                        resId = R.drawable.wi_fi_icon,
-                        name = "wifi"
-                    )
+                Offer(
+                    resId = R.drawable.breakfast,
+                    name = "Breakfast"
+                ),
+                Offer(
+                    resId = R.drawable.cutlery,
+                    name = "Kitchen"
+                ),
+                Offer(
+                    resId = R.drawable.breakfast,
+                    name = "Pet Friendly"
+                ),
+                Offer(
+                    resId = R.drawable.serving_dish,
+                    name = "Dinner"
+                ),
+                Offer(
+                    resId = R.drawable.snowflake,
+                    name = "Air Conditioning"
+                ),
+                Offer(
+                    resId = R.drawable.television,
+                    name = "TV"
+                ),
+                Offer(
+                    resId = R.drawable.wi_fi_icon,
+                    name = "wifi"
                 )
             )
+        )
 
-            JetpackComposeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    BookingScreen(
-                        modifier = Modifier
-                            .padding(innerPadding),
-                        hotel = hotel
-                    )
-                }
-            }
+        BookingScreen(
+            modifier = modifier,
+            hotel = hotel
+        )
+    }
+
+    @Preview
+    @Composable
+    private fun MainActivityContentPreview() {
+        JetpackComposeTheme {
+            MainActivityContent()
         }
     }
 }
