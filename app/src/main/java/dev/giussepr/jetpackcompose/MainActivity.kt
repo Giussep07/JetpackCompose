@@ -4,6 +4,7 @@ package dev.giussepr.jetpackcompose
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
@@ -22,7 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -30,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.giussepr.jetpackcompose.appscreens.AppScreens
 import dev.giussepr.jetpackcompose.booking.BookingScreen
 import dev.giussepr.jetpackcompose.booking.model.Hotel
 import dev.giussepr.jetpackcompose.booking.model.Offer
@@ -50,15 +52,15 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun MainActivityContent() {
-        var currentScreen by remember { mutableIntStateOf(-1) }
+        var currentScreen: AppScreens by remember { mutableStateOf(AppScreens.Home) }
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text("Jetpack Compose") },
+                    title = { Text(currentScreen.title) },
                     navigationIcon = {
-                        if (currentScreen != -1) {
+                        if (currentScreen != AppScreens.Home && currentScreen.showToolbar) {
                             IconButton(onClick = {
-                                currentScreen = -1
+                                currentScreen = AppScreens.Home
                             }) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Default.ArrowBack,
@@ -72,19 +74,25 @@ class MainActivity : ComponentActivity() {
             modifier = Modifier.fillMaxSize()
         ) { innerPadding ->
             when (currentScreen) {
-                -1 -> MainMenu(
+                AppScreens.Home -> MainMenu(
                     Modifier.padding(innerPadding),
                     onScreenSelected = { currentScreen = it })
 
-                0 -> BasicLayouts(modifier = Modifier.fillMaxSize())
-
-                1 -> StateManagement(modifier = Modifier.padding(innerPadding))
+                AppScreens.BasicLayouts -> BasicLayouts(modifier = Modifier.fillMaxSize())
+                AppScreens.StateManagement -> StateManagement(
+                    modifier = Modifier.padding(
+                        innerPadding
+                    )
+                )
             }
+        }
+        BackHandler {
+            currentScreen = AppScreens.Home
         }
     }
 
     @Composable
-    fun MainMenu(modifier: Modifier = Modifier, onScreenSelected: (Int) -> Unit) {
+    fun MainMenu(modifier: Modifier = Modifier, onScreenSelected: (AppScreens) -> Unit) {
         Column(
             modifier = modifier
                 .fillMaxSize(),
@@ -98,10 +106,10 @@ class MainActivity : ComponentActivity() {
                 style = MaterialTheme.typography.headlineMedium,
                 textAlign = TextAlign.Center
             )
-            Button(onClick = { onScreenSelected(0) }) {
+            Button(onClick = { onScreenSelected(AppScreens.BasicLayouts) }) {
                 Text("Basic Layouts")
             }
-            Button(onClick = { onScreenSelected(1) }) {
+            Button(onClick = { onScreenSelected(AppScreens.StateManagement) }) {
                 Text("State Management")
             }
         }
