@@ -7,4 +7,5 @@ sealed class AppScreens(
     data object Home: AppScreens(showToolbar = true, title = "Jetpack Compose")
     data object BasicLayouts: AppScreens(showToolbar = true, title = "Basic Layouts")
     data object StateManagement: AppScreens(showToolbar = false, title = "State Management")
+    data object Shapes: AppScreens(showToolbar = true, title = "Shapes")
 }

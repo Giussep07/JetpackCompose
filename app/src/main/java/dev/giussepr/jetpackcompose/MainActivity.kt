@@ -46,8 +46,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             JetpackComposeTheme {
-                //MainActivityContent()
-                ShapeScreen()
+                MainActivityContent()
             }
         }
     }
@@ -86,6 +85,10 @@ class MainActivity : ComponentActivity() {
                         innerPadding
                     )
                 )
+                AppScreens.Shapes -> ShapeScreen(
+                    modifier = Modifier
+                        .padding(innerPadding)
+                )
             }
         }
         BackHandler {
@@ -113,6 +116,9 @@ class MainActivity : ComponentActivity() {
             }
             Button(onClick = { onScreenSelected(AppScreens.StateManagement) }) {
                 Text("State Management")
+            }
+            Button(onClick = { onScreenSelected(AppScreens.Shapes) }) {
+                Text("Shapes")
             }
         }
     }

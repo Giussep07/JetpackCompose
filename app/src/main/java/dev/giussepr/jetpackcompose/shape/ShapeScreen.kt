@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -25,6 +27,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PointMode
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlin.math.cos
@@ -36,6 +39,7 @@ fun ShapeScreen(modifier: Modifier = Modifier) {
     var numberOfPoints by remember { mutableIntStateOf(1) }
     var numberOfSteps by remember { mutableIntStateOf(1) }
     ShapeScreenContent(
+        modifier = modifier,
         numberOfPoints = numberOfPoints,
         numberOfSteps = numberOfSteps,
         onNumberOfPointsChange = {
@@ -58,8 +62,9 @@ private fun ShapeScreenContent(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.LightGray)
-            .padding(16.dp),
+            .background(MaterialTheme.colorScheme.background)
+            .padding(16.dp)
+            .imePadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
     ) {
@@ -73,11 +78,9 @@ private fun ShapeScreenContent(
                 label = {
                     Text("Number of points")
                 },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 onValueChange = {
-                    val regex = "-?[0-9]+(\\.[0-9]+)?".toRegex()
-                    if (it.matches(regex)) {
-                        onNumberOfPointsChange(it.toIntOrNull() ?: 0)
-                    }
+                    onNumberOfPointsChange(it.toIntOrNull() ?: 0)
                 }
             )
             OutlinedTextField(
@@ -87,11 +90,9 @@ private fun ShapeScreenContent(
                 label = {
                     Text("Number of steps")
                 },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 onValueChange = {
-                    val regex = "-?[0-9]+(\\.[0-9]+)?".toRegex()
-                    if (it.matches(regex)) {
-                        onNumberOfStepsChange(it.toIntOrNull() ?: 0)
-                    }
+                    onNumberOfStepsChange(it.toIntOrNull() ?: 0)
                 }
             )
         }
@@ -171,6 +172,19 @@ private fun ShapeScreenContent(
                     close()
                 }
                 drawPath(starPath, color = Color.Blue, style = Stroke(width = 4f))
+                /*val initialPoint = startPoints.first()
+                var currentPoint = initialPoint
+                do {
+                    // Get the opposite point (pointIndex + 2)
+                    val pointIndex = startPoints.indexOf(currentPoint)
+                    val oppositePoint = startPoints[(pointIndex + numberOfSteps) % startPoints.size]
+                    drawLine(
+                        color = Color.Black,
+                        start = currentPoint,
+                        end = oppositePoint
+                    )
+                    currentPoint = oppositePoint
+                } while (currentPoint != initialPoint)*/
             }
         }
     }
@@ -181,8 +195,8 @@ private fun ShapeScreenContent(
 private fun ShapeScreenPreview() {
     MaterialTheme {
         ShapeScreenContent(
-            numberOfPoints = 5,
-            numberOfSteps = 2,
+            numberOfPoints = 9,
+            numberOfSteps = 5,
             onNumberOfPointsChange = {},
             onNumberOfStepsChange = {}
         )
