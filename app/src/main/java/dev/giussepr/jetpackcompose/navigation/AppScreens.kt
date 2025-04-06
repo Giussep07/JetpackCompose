@@ -9,18 +9,22 @@ sealed class AppScreens(
     val showToolbar: Boolean = true
 ) {
     @Serializable
-    data object Home : AppScreens(route = "home", title = "Jetpack Compose")
+    data object Home : AppScreens(route = AppScreenRoutes.HOME.route, title = "Jetpack Compose")
 
     @Serializable
     data object BasicLayouts :
-        AppScreens(route = "basic_layouts", title = "Basic Layouts")
+        AppScreens(route = AppScreenRoutes.BASIC_LAYOUTS.route, title = "Basic Layouts")
 
     @Serializable
     data object StateManagement :
-        AppScreens(route = "state_management", title = "State Management")
+        AppScreens(route = AppScreenRoutes.STATE_MANAGEMENT.route, title = "State Management")
 
     @Serializable
-    data object Shapes : AppScreens(route = "shapes", title = "Shapes")
+    data object Shapes : AppScreens(route = AppScreenRoutes.SHAPES.route, title = "Shapes")
+
+    @Serializable
+    data object ClickableModifiers :
+        AppScreens(route = AppScreenRoutes.CLICKABLE_MODIFIERS.route, title = "Clickable Modifiers")
 
     companion object {
         fun fromRoute(route: String): AppScreens {
@@ -29,6 +33,7 @@ sealed class AppScreens(
                 BasicLayouts.route -> BasicLayouts
                 StateManagement.route -> StateManagement
                 Shapes.route -> Shapes
+                ClickableModifiers.route -> ClickableModifiers
                 else -> throw IllegalArgumentException("Unknown route: $route")
             }
         }

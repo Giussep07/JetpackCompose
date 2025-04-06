@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import dev.giussepr.jetpackcompose.navigation.AppScreenRoutes
 import dev.giussepr.jetpackcompose.navigation.AppScreens
 
 @Composable
@@ -29,14 +30,12 @@ fun HomeScreen(modifier: Modifier = Modifier, onScreenSelected: (AppScreens) -> 
             style = MaterialTheme.typography.headlineMedium,
             textAlign = TextAlign.Center
         )
-        Button(onClick = { onScreenSelected(AppScreens.BasicLayouts) }) {
-            Text("Basic Layouts")
-        }
-        Button(onClick = { onScreenSelected(AppScreens.StateManagement) }) {
-            Text("State Management")
-        }
-        Button(onClick = { onScreenSelected(AppScreens.Shapes) }) {
-            Text("Shapes")
-        }
+        AppScreenRoutes.entries.filter { it.route != AppScreenRoutes.HOME.route }
+            .forEach { appScreenRoute ->
+                val appScreen = AppScreens.fromRoute(appScreenRoute.route)
+                Button(onClick = { onScreenSelected(appScreen) }) {
+                    Text(appScreen.title)
+                }
+            }
     }
 }

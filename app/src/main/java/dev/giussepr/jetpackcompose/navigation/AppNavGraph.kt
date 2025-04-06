@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import dev.giussepr.jetpackcompose.HomeScreen
 import dev.giussepr.jetpackcompose.booking.BookingScreen
+import dev.giussepr.jetpackcompose.modifiers.ClickableModifiersScreen
 import dev.giussepr.jetpackcompose.modifiers.ShapeScreen
 import dev.giussepr.jetpackcompose.statemanagement.todolist.TodoListScreen
 
@@ -31,6 +32,10 @@ fun AppNavGraph(modifier: Modifier, navController: NavHostController) {
 
         composable(AppScreens.Shapes.route) {
             ShapeScreen()
+        }
+
+        composable(AppScreens.ClickableModifiers.route) {
+            ClickableModifiersScreen()
         }
     }
 }
