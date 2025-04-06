@@ -1,4 +1,4 @@
-package dev.giussepr.jetpackcompose.shape
+package dev.giussepr.jetpackcompose.modifiers
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background

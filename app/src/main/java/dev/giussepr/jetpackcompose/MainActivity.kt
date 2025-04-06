@@ -36,7 +36,7 @@ import dev.giussepr.jetpackcompose.booking.BookingScreen
 import dev.giussepr.jetpackcompose.booking.model.Hotel
 import dev.giussepr.jetpackcompose.booking.model.Offer
 import dev.giussepr.jetpackcompose.booking.model.Tag
-import dev.giussepr.jetpackcompose.shape.ShapeScreen
+import dev.giussepr.jetpackcompose.modifiers.ShapeScreen
 import dev.giussepr.jetpackcompose.statemanagement.todolist.TodoListScreen
 import dev.giussepr.jetpackcompose.ui.theme.JetpackComposeTheme
 
