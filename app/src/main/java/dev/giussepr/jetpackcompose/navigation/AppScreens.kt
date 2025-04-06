@@ -26,6 +26,10 @@ sealed class AppScreens(
     data object ClickableModifiers :
         AppScreens(route = AppScreenRoutes.CLICKABLE_MODIFIERS.route, title = "Clickable Modifiers")
 
+    @Serializable
+    data object FocusManagement :
+        AppScreens(route = AppScreenRoutes.FOCUS_MANAGEMENT.route, title = "Focus Management")
+
     companion object {
         fun fromRoute(route: String): AppScreens {
             return when (route) {
@@ -34,6 +38,7 @@ sealed class AppScreens(
                 StateManagement.route -> StateManagement
                 Shapes.route -> Shapes
                 ClickableModifiers.route -> ClickableModifiers
+                FocusManagement.route -> FocusManagement
                 else -> throw IllegalArgumentException("Unknown route: $route")
             }
         }
