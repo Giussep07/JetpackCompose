@@ -30,6 +30,10 @@ sealed class AppScreens(
     data object FocusManagement :
         AppScreens(route = AppScreenRoutes.FOCUS_MANAGEMENT.route, title = "Focus Management")
 
+    @Serializable
+    data object IntrinsicModifiers :
+        AppScreens(route = AppScreenRoutes.INTRINSIC_MODIFIERS.route, title = "Intrinsic Modifiers")
+
     companion object {
         fun fromRoute(route: String): AppScreens {
             return when (route) {
@@ -39,6 +43,7 @@ sealed class AppScreens(
                 Shapes.route -> Shapes
                 ClickableModifiers.route -> ClickableModifiers
                 FocusManagement.route -> FocusManagement
+                IntrinsicModifiers.route -> IntrinsicModifiers
                 else -> throw IllegalArgumentException("Unknown route: $route")
             }
         }

@@ -6,5 +6,6 @@ enum class AppScreenRoutes(val route: String) {
     STATE_MANAGEMENT("state_management"),
     SHAPES("shapes"),
     CLICKABLE_MODIFIERS("clickable_modifiers"),
-    FOCUS_MANAGEMENT("focus_management");
+    FOCUS_MANAGEMENT("focus_management"),
+    INTRINSIC_MODIFIERS("intrinsic_modifiers");
 }

@@ -9,6 +9,7 @@ import dev.giussepr.jetpackcompose.HomeScreen
 import dev.giussepr.jetpackcompose.booking.BookingScreen
 import dev.giussepr.jetpackcompose.modifiers.ClickableModifiersScreen
 import dev.giussepr.jetpackcompose.modifiers.FocusManagementScreen
+import dev.giussepr.jetpackcompose.modifiers.IntrinsicModifiersScreen
 import dev.giussepr.jetpackcompose.modifiers.ShapeScreen
 import dev.giussepr.jetpackcompose.statemanagement.todolist.TodoListScreen
 
@@ -41,6 +42,10 @@ fun AppNavGraph(modifier: Modifier, navController: NavHostController) {
 
         composable(AppScreens.FocusManagement.route) {
             FocusManagementScreen()
+        }
+
+        composable(AppScreens.IntrinsicModifiers.route) {
+            IntrinsicModifiersScreen()
         }
     }
 }
