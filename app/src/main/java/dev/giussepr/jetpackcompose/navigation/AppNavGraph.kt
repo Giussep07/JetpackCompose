@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import dev.giussepr.jetpackcompose.HomeScreen
 import dev.giussepr.jetpackcompose.booking.BookingScreen
 import dev.giussepr.jetpackcompose.modifiers.ClickableModifiersScreen
+import dev.giussepr.jetpackcompose.modifiers.CustomLayoutScreen
 import dev.giussepr.jetpackcompose.modifiers.FocusManagementScreen
 import dev.giussepr.jetpackcompose.modifiers.IntrinsicModifiersScreen
 import dev.giussepr.jetpackcompose.modifiers.ShapeScreen
@@ -15,7 +16,11 @@ import dev.giussepr.jetpackcompose.statemanagement.todolist.TodoListScreen
 
 @Composable
 fun AppNavGraph(modifier: Modifier, navController: NavHostController) {
-    NavHost(modifier = modifier, navController = navController, startDestination = AppScreens.Home.route) {
+    NavHost(
+        modifier = modifier,
+        navController = navController,
+        startDestination = AppScreens.Home.route
+    ) {
         composable(AppScreens.Home.route) {
             HomeScreen(
                 onScreenSelected = { appScreens ->
@@ -46,6 +51,10 @@ fun AppNavGraph(modifier: Modifier, navController: NavHostController) {
 
         composable(AppScreens.IntrinsicModifiers.route) {
             IntrinsicModifiersScreen()
+        }
+
+        composable(AppScreens.CustomLayout.route) {
+            CustomLayoutScreen()
         }
     }
 }
