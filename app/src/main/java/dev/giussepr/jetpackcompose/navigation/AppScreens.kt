@@ -38,6 +38,10 @@ sealed class AppScreens(
     data object CustomLayout :
         AppScreens(route = AppScreenRoutes.CUSTOM_LAYOUT.route, title = "Custom Layout")
 
+    @Serializable
+    data object CustomSubComposeLayout :
+        AppScreens(route = AppScreenRoutes.CUSTOM_SUBCOMPOSELAYOUT.route, title = "Custom SubComposeLayout")
+
     companion object {
         fun fromRoute(route: String): AppScreens {
             return when (route) {
@@ -49,6 +53,7 @@ sealed class AppScreens(
                 FocusManagement.route -> FocusManagement
                 IntrinsicModifiers.route -> IntrinsicModifiers
                 CustomLayout.route -> CustomLayout
+                CustomSubComposeLayout.route -> CustomSubComposeLayout
                 else -> throw IllegalArgumentException("Unknown route: $route")
             }
         }

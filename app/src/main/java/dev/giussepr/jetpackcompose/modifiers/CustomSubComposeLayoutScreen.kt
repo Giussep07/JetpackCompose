@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -25,7 +26,7 @@ import dev.giussepr.jetpackcompose.ui.theme.JetpackComposeTheme
 import kotlin.random.Random
 
 @Composable
-fun CustomLayoutScreen(modifier: Modifier = Modifier) {
+fun CustomSubComposeLayoutScreen(modifier: Modifier = Modifier) {
     var page by remember { mutableIntStateOf(0) }
     Column(
         modifier = modifier
@@ -33,14 +34,14 @@ fun CustomLayoutScreen(modifier: Modifier = Modifier) {
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        PagedRow(
+        SubComposePagedRow(
             page = page
         ) {
             (1..1000).forEach {
                 Box(
                     modifier = Modifier
-                        .width(Random.nextInt(10, 180).dp)
-                        .height(Random.nextInt(10, 120).dp)
+                        .width(Random.nextInt(10, 300).dp)
+                        .height(Random.nextInt(10, 300).dp)
                         .background(Color(Random.nextInt()))
                 )
             }
@@ -54,11 +55,11 @@ fun CustomLayoutScreen(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .weight(1f),
                 onClick = {
-                if (page > 0) {
-                    page--
-                }
-            }) {
-                androidx.compose.material3.Text("Previous")
+                    if (page > 0) {
+                        page--
+                    }
+                }) {
+                Text("Previous")
             }
             Button(
                 modifier = Modifier
@@ -67,7 +68,7 @@ fun CustomLayoutScreen(modifier: Modifier = Modifier) {
                     page++
                 }
             ) {
-                androidx.compose.material3.Text("Next")
+                Text("Next")
             }
         }
     }
@@ -77,7 +78,7 @@ fun CustomLayoutScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun CustomLayoutScreenPreview() {
     JetpackComposeTheme {
-        CustomLayoutScreen(
+        CustomSubComposeLayoutScreen(
             modifier = Modifier
                 .statusBarsPadding()
         )

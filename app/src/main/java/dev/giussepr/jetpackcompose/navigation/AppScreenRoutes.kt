@@ -9,4 +9,5 @@ enum class AppScreenRoutes(val route: String) {
     FOCUS_MANAGEMENT("focus_management"),
     INTRINSIC_MODIFIERS("intrinsic_modifiers"),
     CUSTOM_LAYOUT("custom_layout"),
+    CUSTOM_SUBCOMPOSELAYOUT("custom_subcomposelayout")
 }

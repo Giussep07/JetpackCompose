@@ -9,6 +9,7 @@ import dev.giussepr.jetpackcompose.HomeScreen
 import dev.giussepr.jetpackcompose.booking.BookingScreen
 import dev.giussepr.jetpackcompose.modifiers.ClickableModifiersScreen
 import dev.giussepr.jetpackcompose.modifiers.CustomLayoutScreen
+import dev.giussepr.jetpackcompose.modifiers.CustomSubComposeLayoutScreen
 import dev.giussepr.jetpackcompose.modifiers.FocusManagementScreen
 import dev.giussepr.jetpackcompose.modifiers.IntrinsicModifiersScreen
 import dev.giussepr.jetpackcompose.modifiers.ShapeScreen
@@ -55,6 +56,10 @@ fun AppNavGraph(modifier: Modifier, navController: NavHostController) {
 
         composable(AppScreens.CustomLayout.route) {
             CustomLayoutScreen()
+        }
+
+        composable(AppScreens.CustomSubComposeLayout.route) {
+            CustomSubComposeLayoutScreen()
         }
     }
 }
